@@ -1,26 +1,28 @@
-name: 'Build'
+name: Manual Input Demo
 
+# 1. Define the workflow_dispatch trigger to accept inputs
 on:
-  push:
-    branches:
-      - 'master'
-  pull_request:
-    branches:
-      - 'master'
-
-permissions:
-  contents: 'read'
-  statuses: 'write'
-
-defaults:
-  run:
-    shell: 'bash'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Select branch'
+        required: true
+        type: choice
+        options:
+          - master
+          - develop
 
 jobs:
-  gen-readme:
-    runs-on: 'ubuntu-latest'
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: 'Build and Unit tests'
+      # 2. Access inputs using the ${{ inputs.input_name }} syntax
+      - name: Log the user inputs
         run: |
-          echo "ERROR: README has not been updated"
-          #exit 1
+          echo "The selected environment is: ${{ inputs.branch }}"
+
+      # 3. Use an input inside a conditional 'if' statement
+      - name: Optional Testing Step
+        if: ${{ inputs.branch == "develop" }}
+        run: |
+          exit 1
