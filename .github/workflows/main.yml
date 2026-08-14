@@ -1,4 +1,4 @@
-name: Manual Input Demo
+name: Rinu kuttan's pipeline
 
 # 1. Define the workflow_dispatch trigger to accept inputs
 on:
