@@ -21,8 +21,9 @@ jobs:
         run: |
           echo "The selected environment is: ${{ inputs.branch }}"
 
-      # 3. Use an input inside a conditional 'if' statement
       - name: Optional Testing Step
-        if: ${{ inputs.branch == "develop" }}
+        # NOTE: You can safely omit ${{ }} inside the 'if' condition as it is evaluated automatically
+        if: inputs.branch == 'develop'
         run: |
+          echo "Branch is develop, failing intentionally..."
           exit 1
