@@ -1,0 +1,26 @@
+name: 'Build'
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
+
+permissions:
+  contents: 'read'
+  statuses: 'write'
+
+defaults:
+  run:
+    shell: 'bash'
+
+jobs:
+  gen-readme:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Build and Unit tests'
+        run: |
+          echo "ERROR: README has not been updated"
+          #exit 1
